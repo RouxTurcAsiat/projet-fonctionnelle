@@ -1,7 +1,7 @@
 package project
 
 /**
- * @file src/main.scala
+ * @file src/Main.scala
  * @brief File containing the main function and all the impure functions
  * @author Mae K.
  * @author Mustafa-Can K.

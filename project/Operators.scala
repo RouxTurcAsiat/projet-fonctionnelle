@@ -1,7 +1,7 @@
 package project
 
 /**
- * @file src/operators.scala
+ * @file src/Operators.scala
  * @brief File containing the ADT for the logical operators
  * @author Mae K.
  * @author Mustafa-Can K.
