@@ -4,17 +4,20 @@ on: [push, pull_request]
 jobs:
   ci:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        scala:
-          - scala3
 
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
-      
-      - name: Setup Scala
-        uses: japgolly/setup-everything-scala@v3.1
         
-      - name: Build and test
-        run: bash run.sh all
+      - name: Setup Scala
+        run: |
+          sudo apt install default-jdk curl wget -y
+          LATEST_VER=$(curl -s https://api.github.com/repos/lampepfl/dotty/releases/latest|grep tag_name | cut -d '"' -f 4)
+          wget https://github.com/lampepfl/dotty/releases/download/$LATEST_VER/scala3-$LATEST_VER.tar.gz -O Scala-${LATEST_VER}.tar.gz
+          tar xvf Scala-${LATEST_VER}.tar.gz && rm -f Scala-${LATEST_VER}.tar.gz
+          mv scala3-*/ ~/scala3/
+          
+      - name: Run build & tests
+        run: PATH="$PATH:~/scala3" bash test.sh all
+          
+          
