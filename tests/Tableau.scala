@@ -4,4 +4,4 @@ import tests.TestFramework
 
 object Tableau extends TestFramework:
     def firstTest: Result[Int] =
-        this.assertEqual(1, 0)
+        this.assertEqual(1, 1)
