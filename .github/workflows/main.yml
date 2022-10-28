@@ -1,0 +1,20 @@
+name: Unit tests
+on: [push, pull_request]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        scala:
+          - scala3
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+      
+      - name: Setup Scala
+        uses: japgolly/setup-everything-scala@v3.1
+        
+      - name: Build and test
+        run: bash run.sh all
