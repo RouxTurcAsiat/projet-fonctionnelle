@@ -10,9 +10,9 @@ package project
  */
 
 object Operators:
-    enum LogicalOp[+A]:
-        case And(left: LogicalOp[A], right: LogicalOp[A])
-        case Or(left: LogicalOp[A], right: LogicalOp[A])
-        case Not(op: LogicalOp[A]) 
-        case IfThen(left: LogicalOp[A], right: LogicalOp[A])
-        case Atom(op: A) 
+    enum LogicalOp:
+        case And(left: LogicalOp, right: LogicalOp)
+        case Or(left: LogicalOp, right: LogicalOp)
+        case Not(op: LogicalOp) 
+        case IfThen(left: LogicalOp, right: LogicalOp)
+        case Atom(op: String) 
