@@ -2,18 +2,24 @@
 
 BUILD=./.build
 
-if command -v scala >/dev/null 2>&1; then
-    SCALA=scala
-    SCALAC=scalac
-else
-    if command -v scala3 >/dev/null 2>&1; then
-        SCALA=scala3
-        SCALAC=scalac3
+if [ -z "$SCALA_PATH" ]; then
+    if command -v scala >/dev/null 2>&1; then
+        SCALA=scala
+        SCALAC=scalac
     else
-        echo "Scala is not installed"
-        exit 1
+        if command -v scala3 >/dev/null 2>&1; then
+            SCALA=scala3
+            SCALAC=scalac3
+        else
+            echo "Scala is not installed"
+            exit 1
+        fi
     fi
+else
+    SCALA=$SCALA_PATH/scala 
+    SCALAC=$SCALA_PATH/scalac 
 fi
+
 
 if [ ! -d "$BUILD" ]; then
     mkdir "$BUILD"

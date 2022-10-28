@@ -19,6 +19,6 @@ jobs:
           chmod +x ~/scala3/bin/* run.sh
           
       - name: Run build & tests
-        run: PATH="$PATH:~/scala3/bin" ./run.sh all
+        run: SCALA_PATH=~/scala3/bin ./run.sh all
           
           
