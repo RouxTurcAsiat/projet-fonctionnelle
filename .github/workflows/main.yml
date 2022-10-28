@@ -18,6 +18,6 @@ jobs:
           mv scala3-*/ ~/scala3/
           
       - name: Run build & tests
-        run: PATH="$PATH:~/scala3" bash run.sh all
+        run: PATH="$PATH:~/scala3/bin" bash run.sh all
           
           
