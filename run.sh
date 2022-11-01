@@ -34,7 +34,10 @@ elif [ "$1" = "list-test" ]; then
     echo "Available tests: "
     echo $test_list | xargs -n 1 echo "* "
 elif [ "$1" = "all" ]; then 
-    echo $test_list | xargs -i $SCALA -classpath $BUILD tests.{}
+    for test in $test_list; do
+        $SCALA -classpath $BUILD tests.$test
+        echo ""
+    done
 elif [ -f "./.build/tests/$1.class" ]; then
     $SCALA -classpath $BUILD tests.$1
 else 
