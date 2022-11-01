@@ -25,7 +25,7 @@ if [ ! -d "$BUILD" ]; then
     mkdir "$BUILD"
 fi
 
-$SCALAC -Werror -unchecked -d $BUILD -indent -rewrite ./project/*.scala ./tests/*.scala
+$SCALAC -Werror -unchecked -d $BUILD -indent -rewrite -explain ./project/*.scala ./tests/*.scala
 test_list=$(find ./.build/tests/ -name "*.class" | cut -d "/" -f 4 | cut -d "." -f 1 | grep -Fv "$" | grep -v "TestFramework")
 
 if [ -z "$1" ]; then
@@ -35,7 +35,7 @@ elif [ "$1" = "list-test" ]; then
     echo $test_list | xargs -n 1 echo "* "
 elif [ "$1" = "all" ]; then 
     echo $test_list | xargs -i $SCALA -classpath $BUILD tests.{}
-elif [ -f "./tests/$1.scala" ]; then
+elif [ -f "./.build/tests/$1.class" ]; then
     $SCALA -classpath $BUILD tests.$1
 else 
     echo "Unknown command $1"
