@@ -16,6 +16,10 @@ object Operators:
         case Not(op: LogicalOp) 
         case IfThen(left: LogicalOp, right: LogicalOp)
         case Atom(op: String) 
+        case Equiv(left: LogicalOp, right: LogicalOp)
+        case Xor(left: LogicalOp, right: LogicalOp)
+        case Nand(left: LogicalOp, right: LogicalOp)
+        case Xnor(left: LogicalOp, right: LogicalOp)
 
         def eval(vars: Map[String, Char]): Boolean = this match
             case And(left, right) => left.eval(vars) && right.eval(vars)
@@ -23,3 +27,7 @@ object Operators:
             case Not(op) => !op.eval(vars)
             case IfThen(left, right) => !left.eval(vars) || right.eval(vars)
             case Atom(op) => vars(op) == '1'
+
+            case Equiv(left, right) => IfThen(left, right) && IfThen(right, left)
+            //case Equiv(left, right) => (!left.eval(vars) || right.eval(vars)) && (!right.eval(vars) || left.eval(vars))
+            case Xor
