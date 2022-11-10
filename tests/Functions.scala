@@ -10,6 +10,9 @@ object Semtab extends TestFramework:
           Atom("r"),
           Not(Atom("q")),
         )
+        val formula2: List[LogicalOp] = List(
+          Nand(Atom("a"), Atom("b"))
+        )
 
         val output = List(
             List(false, false, true),
@@ -22,4 +25,14 @@ object Semtab extends TestFramework:
             List(true, true, false)
         )
 
-        this.assertEqual(semtab(formula), output)
+        val output2 = List(
+          List(true),
+          List(true),
+          List(true),
+          List(false)
+        )
+
+        //this.assertEqual(semtab(formula), output)
+
+        this.assertEqual(semtab(formula2), output2)
+

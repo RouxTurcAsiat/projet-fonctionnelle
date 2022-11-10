@@ -28,12 +28,12 @@ object Functions:
         val req = List.range(1, formula.length + 1).map(_ > 0)
         tab.filter((x: Line) => x == req).length >= 1
 
-    def isValid(formula: List[LogicalOp]): Boolean =
+    /*def isValid(formula: List[LogicalOp]): Boolean =
         val nonFormula = formula.map(if(1) 0 else if(0) 1)
         if(isSatisfiable(nonFormula))
             true
         else
-            false
+            false*/
 
     def isTautology(formula: List[LogicalOp]): Boolean =
         val tab = semtab(formula)
@@ -45,10 +45,10 @@ object Functions:
         val req = List.range(1, formula.length + 1).map(_ < 0)
         tab.filter((x: Line) => x == req).length == tab.length
 
-    def models(formula: List[LogicalOp]): Tableau =
+    /*def models(formula: List[LogicalOp]): Tableau =
         val tab = semtab(formula)
         val req = List.range(1, formula.length + 1).map(_ > 0)
-        if(isSatisfiable(formula))
+        if(isSatisfiable(formula))*/
             
 
 

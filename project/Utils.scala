@@ -28,3 +28,7 @@ object Utils:
                 case And(a, b) => extractVar(xs :+ a :+ b, acc)
                 case Or(a, b) => extractVar(xs :+ a :+ b, acc)
                 case IfThen(a, b) => extractVar(xs :+ a :+ b, acc)
+                case Equiv(a, b) => extractVar(xs :+ a :+ b, acc)
+                case Xor(a, b) => extractVar(xs :+ a :+ b, acc)
+                case Nand(a, b) => extractVar(xs :+ a :+ b, acc)
+                case Xnor(a, b) => extractVar(xs :+ a :+ b, acc)

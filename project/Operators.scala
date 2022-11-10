@@ -16,6 +16,8 @@ object Operators:
         case Not(op: LogicalOp) 
         case IfThen(left: LogicalOp, right: LogicalOp)
         case Atom(op: String) 
+
+        // This is the operators for the extension
         case Equiv(left: LogicalOp, right: LogicalOp)
         case Xor(left: LogicalOp, right: LogicalOp)
         case Nand(left: LogicalOp, right: LogicalOp)
@@ -28,6 +30,13 @@ object Operators:
             case IfThen(left, right) => !left.eval(vars) || right.eval(vars)
             case Atom(op) => vars(op) == '1'
 
-            case Equiv(left, right) => IfThen(left, right) && IfThen(right, left)
-            //case Equiv(left, right) => (!left.eval(vars) || right.eval(vars)) && (!right.eval(vars) || left.eval(vars))
-            case Xor
+            // This is the operators for the extension
+            case Equiv(left, right) => (!left.eval(vars) || right.eval(vars)) && (!right.eval(vars) || left.eval(vars))
+            case Xor(left, right) => left.eval(vars) ^ right.eval(vars)
+            case Nand(left, right) => !(left.eval(vars) && right.eval(vars))
+            case Xnor(left, right) => !(left.eval(vars) ^ right.eval(vars))
+        
+            //case Equiv(left, right) => And(IfThen(left.eval(vars), right.eval(vars)), IfThen(right.eval(vars), left.eval(vars)))
+            //case Equiv(left, right) => And(IfThen(left, right), IfThen(right, left))
+            //case Nand(left, right) => Not(And(left, right))
+            //case Xnor(left, right) => Not(Xor(left, right))
