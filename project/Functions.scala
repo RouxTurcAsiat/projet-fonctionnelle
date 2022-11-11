@@ -46,10 +46,19 @@ object Functions:
         tab.filter((x: Line) => x == req).length == tab.length
 
     /*def models(formula: List[LogicalOp]): Tableau =
+        /*val tab = semtab(formula)
+        val req = List.range(1, formula.length + 1).map(_ < 0)
+        val s = tab.filter((x: Line) => x == req).length*/
+        val vars = extractVar(formula).toList
+        /*if(isSatisfiable(formula))
+            List.range(0, math.pow(2, vars.length).toInt)
+            .map((x: Line) => x.isSatisfiable)
+        else
+            Nil*/
+
         val tab = semtab(formula)
-        val req = List.range(1, formula.length + 1).map(_ > 0)
-        if(isSatisfiable(formula))*/
-            
+        if(isSatisfiable((formula(1))))
+            tab*/
 
 
     /*def isSatisfiable(formula: List[LogicalOp]): Boolean =
