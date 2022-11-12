@@ -35,6 +35,17 @@ object Functions:
         else
             false*/
 
+    def isValid(formula: List[LogicalOp], f: List[Boolean]): Boolean =
+        val tab = models(formula)
+        def loop(t: Tableau): Boolean =
+            if(t.isEmpty)
+                false
+            else if(t.head == f)
+                true
+            else
+                loop(t.tail)
+        loop(tab) 
+
     def isTautology(formula: List[LogicalOp]): Boolean =
         val tab = semtab(formula)
         val req = List.range(1, formula.length + 1).map(_ > 0)
