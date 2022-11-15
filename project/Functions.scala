@@ -10,7 +10,7 @@ package project
  */
 
 import project.Operators.LogicalOp
-import project.Utils.extractVar
+import project.Utils.extractVar, project.Utils.Option.map
 
 type Line = List[Boolean]
 type Tableau = List[Line]
@@ -70,6 +70,23 @@ object Functions:
         val tab = semtab(formula)
         if(isSatisfiable((formula(1))))
             tab*/
+
+    def models(formula: List[LogicalOp]): Tableau =
+        val tab = semtab(formula)
+        val req = List.range(1, formula.length + 1).map(_ > 0)
+        tab.zipWithIndex.filter((x: Line, y: Int) => x == req).map(_(1).toBinaryString.toList.map(_ == '1'))
+
+    /*def counterexamples(formula: List[LogicalOp]): Tableau = 
+        val tab = semtab(formula)
+        tab.filter((x: Line) => x != models(formula))*/
+
+    def counterexamples(formula: List[LogicalOp]): Tableau = 
+        /*val tab = semtab(formula).zipWithIndex
+        val modelsIndex = models(formula).map((x) => Integer.parseInt(x.map(if _ then "1" else "0").mkString, 2))
+        tab.filterNot((x: Line, y: Int) => modelsIndex.contains(y)).map(_(1).toBinaryString.toList.map(_ == '1'))*/
+        val tab = semtab(formula)
+        val req = List.range(1, formula.length + 1).map(_ > 0)
+        tab.zipWithIndex.filter((x: Line, y: Int) => x != req).map(_(1).toBinaryString.toList.map(_ == '1'))
 
 
     /*def isSatisfiable(formula: List[LogicalOp]): Boolean =

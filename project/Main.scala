@@ -1,5 +1,10 @@
 package project
 
+/*import project.Operators.LogicalOp, LogicalOp.*
+import project.Functions.semtab, project.Tableau
+import project.Functions.isSatisfiable, project.Functions.isContradiction, project.Functions.isTautology
+import project.Functions.models, project.Functions.counterexamples, project.Functions.isValid*/
+
 /**
  * @file src/Main.scala
  * @brief File containing the main function and all the impure functions
@@ -11,4 +16,11 @@ package project
 
 object Main:
     def main(args: Array[String]): Unit =
-        println("Hello, world!")
+        /*val formula: List[LogicalOp] = List(
+          Or(Atom("p"), Atom("q")),
+          Atom("r"),
+          Not(Atom("q")),
+        )*/
+        //println("Hello, world!")
+        println("kk")
+        

@@ -32,3 +32,12 @@ object Utils:
                 case Xor(a, b) => extractVar(xs :+ a :+ b, acc)
                 case Nand(a, b) => extractVar(xs :+ a :+ b, acc)
                 case Xnor(a, b) => extractVar(xs :+ a :+ b, acc)
+
+    enum Option[+A]:
+        case Some(get: A)
+        case None
+
+        def map[B](f: A => B): Option[B] =
+            this match
+                case None => None
+                case Some(a) => Some(f(a))
